@@ -9,8 +9,6 @@ export class AuthService {
   constructor() {}
   // ...
   public isAuthenticated(): boolean {
-
-
     const token = localStorage.getItem('user')!;
     
     if(token == null) {

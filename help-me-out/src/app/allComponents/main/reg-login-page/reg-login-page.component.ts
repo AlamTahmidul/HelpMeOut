@@ -13,13 +13,14 @@ export class RegLoginPageComponent implements OnInit {
   name = new FormControl('');
   password = new FormControl('');
 
-  constructor(public router: Router, private loginService: LoginService) {}
+  constructor(public router: Router, private loginService : LoginService) {
+   }
 
   ngOnInit(): void {
-    console.log(
-      'checking if any user is detected: ',
-      localStorage.getItem('user')
-    );
+    console.log('checking if any user is detected: ',localStorage.getItem('user'))
+   
+    document.querySelector(".invalid-pw")?.setAttribute('hidden', '');
+    document.querySelector(".logout-btn")?.setAttribute('hidden', '');
   }
 
   LogInClicked(): void {
@@ -46,14 +47,16 @@ export class RegLoginPageComponent implements OnInit {
           console.log('response: ', founduser);
           console.log('Setting the user in localstorage');
 
-          localStorage.setItem('user', founduser.user.name);
-          console.log('Navigating to home page');
-          this.router.navigate(['home']);
-        },
-        (error) => {
-          console.log('Bad Credential');
-        }
-      );
+        localStorage.setItem('user', founduser.user.name)
+        console.log("Navigating to home page");
+        this.router.navigate(['home']);
+      }, (error)=>{
+        console.log("Bad Credential");
+        // alert("Invalid Credentials!");
+        document.querySelector(".invalid-pw")?.removeAttribute('hidden');
+      }
+)
+    
   }
 
   getDecodedAccessToken(token: string): any {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -18,7 +19,9 @@ export class NavComponent implements OnInit {
   logMeOut(): void {
     localStorage.removeItem('user');
     this.router.navigate(['']);
-    alert('Logged Out!');
+    document.querySelector(".logout-btn")?.setAttribute('hidden', '');
+    document.querySelector(".user-disp")?.setAttribute('hidden', '');
+    // alert('Logged Out!');
   }
 
   
