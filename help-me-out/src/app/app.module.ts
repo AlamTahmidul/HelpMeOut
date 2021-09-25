@@ -7,7 +7,10 @@ import { HeaderComponent } from './allComponents/header/header.component';
 import { FooterComponent } from './allComponents/footer/footer.component';
 import { MainComponent } from './allComponents/main/main.component';
 import { NavComponent } from './allComponents/header/nav/nav.component';
-import { HttpClientModule } from '@angular/common/http';
+import { RegLoginPageComponent } from './allComponents/main/reg-login-page/reg-login-page.component';
+import { LandingComponent } from './allComponents/main/landing/landing.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -15,11 +18,14 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     MainComponent,
-    NavComponent
+    NavComponent,
+    RegLoginPageComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
