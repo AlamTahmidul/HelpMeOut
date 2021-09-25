@@ -12,6 +12,7 @@ import { LandingComponent } from './allComponents/main/landing/landing.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ButtonComponent } from './allComponents/main/button/button.component';
+import { GeoLocateMeComponent } from './allComponents/main/landing/geo-locate-me/geo-locate-me.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ButtonComponent } from './allComponents/main/button/button.component';
     RegLoginPageComponent,
     LandingComponent,
     ButtonComponent,
+    GeoLocateMeComponent,
     
   ],
   imports: [
