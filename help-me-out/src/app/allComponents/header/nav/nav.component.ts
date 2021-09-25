@@ -21,4 +21,5 @@ export class NavComponent implements OnInit {
     alert('Logged Out!');
   }
 
+  
 }
