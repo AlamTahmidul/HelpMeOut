@@ -2,25 +2,30 @@
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-xl-10">
-          <div class="card rounded-3 text-black">
             <div class="row g-0">
               <div class="col-lg-6">
                 <div class="card-body p-md-5 mx-md-4">
   
-                        <!-- CONTENT -->
+                    <div class="text-center">
+                        <input type="file" accept="image/*" onchange="openFile(event)" /><br />
+                        <!-- <img id="output" /> -->
+                      </div>
   
                 </div>
               </div>
               <div class="col-lg-6 d-flex align-items-center gradient-custom-2 right-content">
                 <div>
                   <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                      <!-- CONTENT -->
+                    <button class="btn btn-success" onclick="restore(event)">
+                        Restore Previous Saved image
+                      </button>
+                      <img id="output" style="height: 100%; width: 100%;" />
                   </div>
                 </div>
               </div>
 
             </div>
-          </div>
+
         </div>
       </div>
     </div>
