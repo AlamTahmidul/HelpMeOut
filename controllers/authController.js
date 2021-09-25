@@ -37,7 +37,7 @@ exports.loginUser = async (req, res) => {
 			},
 			(err, token) => {
 				if (err) throw err;
-				res.status(200).json(token);
+				res.status(200).json({ token, user });
 			}
 		);
 	} catch (err) {
@@ -88,7 +88,7 @@ exports.registerUser = async (req, res) => {
 				if (err) throw err;
 
 				sendWelcomeEmail(email, username);
-				res.status(200).json(token);
+				res.status(200).json({ token, user: newUser });
 			}
 		);
 	} catch (err) {

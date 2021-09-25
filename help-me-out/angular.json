@@ -102,5 +102,8 @@
       }
     }
   },
-  "defaultProject": "help-me-out"
+  "defaultProject": "help-me-out",
+  "cli": {
+    "analytics": "2ea3ce9d-ccde-44b7-bcd7-fddf45be6529"
+  }
 }
