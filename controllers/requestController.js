@@ -52,6 +52,11 @@ exports.claimRequest = async (req, res) => {
             return res.status(404).json({ msg: 'Request does not exist' });
         }
 
+        // Check if request is already claimed
+        if (request.status === 'Claimed') {
+            return res.status(401).json({ msg: 'Request already claimed' });
+        }
+
         // Check if request belongs to logged in user
         if (user._id.toString() === request.author.toString()) {
             return res.status(401).json({ msg: 'Request cannot be claimed by user' });
