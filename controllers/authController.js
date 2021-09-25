@@ -8,7 +8,7 @@ exports.loginUser = async (req, res) => {
 
 	try {
 		const user = await User.findOne({ email });
-
+		console.log(req.body)
 		// Check if user exists
 		if (!user) {
 			return res.status(400).json({ msg: "User does not exist" });
@@ -24,6 +24,7 @@ exports.loginUser = async (req, res) => {
 		const payload = {
 			user: {
 				id: user.id,
+				name: user.username
 			},
 		};
 
