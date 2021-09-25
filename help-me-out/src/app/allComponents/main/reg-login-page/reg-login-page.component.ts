@@ -16,12 +16,14 @@ export class RegLoginPageComponent implements OnInit {
   password = new FormControl('')
  
 
-  constructor(public router: Router, private loginService : LoginService) { }
+  constructor(public router: Router, private loginService : LoginService) {
+   }
 
   ngOnInit(): void {
     console.log('checking if any user is detected: ',localStorage.getItem('user'))
    
-    
+    document.querySelector(".invalid-pw")?.setAttribute('hidden', '');
+    document.querySelector(".logout-btn")?.setAttribute('hidden', '');
   }
 
   LogInClicked(): void{
@@ -48,6 +50,8 @@ export class RegLoginPageComponent implements OnInit {
         this.router.navigate(['home']);
       }, (error)=>{
         console.log("Bad Credential");
+        // alert("Invalid Credentials!");
+        document.querySelector(".invalid-pw")?.removeAttribute('hidden');
       }
 )
     

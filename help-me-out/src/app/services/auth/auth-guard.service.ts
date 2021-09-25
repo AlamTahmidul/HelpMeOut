@@ -7,11 +7,15 @@ import { AuthService } from './auth.service';
 })
 export class AuthGuardService implements CanActivate {
   constructor(public auth: AuthService, public router: Router) {}
+
+
   canActivate(): boolean {
     if (!this.auth.isAuthenticated()) {
       this.router.navigate(['']);
       return false;
     }
+    // User is logged in!
+    document.querySelector(".logout-btn")?.removeAttribute('hidden');
     return true;
   }
 }
