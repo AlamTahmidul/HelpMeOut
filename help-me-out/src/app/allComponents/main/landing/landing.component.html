@@ -1,8 +1,17 @@
+<<<<<<< HEAD
+Hello {{ user }}
+<button (click)="LogMeOut()">Logout</button>
+=======
 <!-- Hello {{ user }}
 <button (click) = "LogMeOut() ">Logout</button> -->
+>>>>>>> 0616c31da58b3f258aa977ad216835517148dc65
 
 <div class="text-center">
-    <input type = "file" accept="image/*" onchange="openFile(event)"><br>
-    <button class="btn btn-success" onclick="restore(event)">Restore Previous Saved Image<br></button>
-    <img id='output'>
+  <input type="file" accept="image/*" onchange="openFile(event)" /><br />
+  <button class="btn btn-success" onclick="restore(event)">
+    Restore Previous Saved Image<br />
+  </button>
+  <img id="output" />
 </div>
+
+<app-geo-locate-me></app-geo-locate-me>
