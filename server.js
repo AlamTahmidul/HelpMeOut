@@ -12,11 +12,6 @@ const requestRoutes = require('./routes/request');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use((req, res, next) => {
-	console.log(req.body);
-	next();
-})
-
 // Initialize routes
 app.use('/api/auth', authRoutes);
 app.use('/api/request', requestRoutes);
