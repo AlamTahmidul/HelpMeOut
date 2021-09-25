@@ -9,8 +9,13 @@ const authRoutes = require('./routes/auth');
 const requestRoutes = require('./routes/request');
 
 // Initialize middleware
-app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use((req, res, next) => {
+	console.log(req.body);
+	next();
+})
 
 // Initialize routes
 app.use('/api/auth', authRoutes);
