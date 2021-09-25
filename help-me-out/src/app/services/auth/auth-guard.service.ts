@@ -16,6 +16,7 @@ export class AuthGuardService implements CanActivate {
     }
     // User is logged in!
     document.querySelector(".logout-btn")?.removeAttribute('hidden');
+    document.querySelector(".user-disp")?.removeAttribute('hidden');
     return true;
   }
 }

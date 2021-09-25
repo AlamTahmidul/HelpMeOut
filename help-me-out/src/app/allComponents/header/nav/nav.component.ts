@@ -20,6 +20,7 @@ export class NavComponent implements OnInit {
     localStorage.removeItem('user');
     this.router.navigate(['']);
     document.querySelector(".logout-btn")?.setAttribute('hidden', '');
+    document.querySelector(".user-disp")?.setAttribute('hidden', '');
     // alert('Logged Out!');
   }
 
