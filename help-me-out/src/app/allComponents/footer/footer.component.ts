@@ -12,6 +12,11 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.user == null) {
+      document.querySelector(".user-disp")?.setAttribute('hidden', '');
+    } else {
+      document.querySelector(".user-disp")?.removeAttribute('hidden');
+    }
   }
 
 }
