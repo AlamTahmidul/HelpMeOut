@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../../../services/api-calling/login.service'
+import jwt_decode from 'jwt-decode';
 
 
 
@@ -14,7 +16,7 @@ export class RegLoginPageComponent implements OnInit {
   password = new FormControl('')
  
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, private loginService : LoginService) { }
 
   ngOnInit(): void {
     console.log('checking if any user is detected: ',localStorage.getItem('user'))
@@ -29,11 +31,35 @@ export class RegLoginPageComponent implements OnInit {
     console.log('user: ',this.name.value);
     console.log('password: ',this.password.value);
 
-    console.log("Setting the user in localstorage");
+    console.log("Sending the credentials to backend and see what they response with: ");
 
-    localStorage.setItem('user', this.name.value)
-    console.log("Navigating to home page");
-    this.router.navigate(['home']);
+    this.loginService.loginUser({
+
+      "email": this.name.value,
+      "password": this.password.value
+      
+      }).subscribe((data)=>{
+        var founduser = this.getDecodedAccessToken((JSON.stringify(data)))
+        console.log('response: ',founduser);
+        console.log("Setting the user in localstorage");
+
+        localStorage.setItem('user', founduser.user.name)
+        console.log("Navigating to home page");
+        this.router.navigate(['home']);
+      }, (error)=>{
+        console.log("Bad Credential");
+      }
+)
+    
+  }
+
+  getDecodedAccessToken(token: string): any {
+    try{
+        return jwt_decode(token);
+    }
+    catch(Error){
+        return null;
+    }
   }
 
 }

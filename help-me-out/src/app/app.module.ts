@@ -10,7 +10,7 @@ import { NavComponent } from './allComponents/header/nav/nav.component';
 import { RegLoginPageComponent } from './allComponents/main/reg-login-page/reg-login-page.component';
 import { LandingComponent } from './allComponents/main/landing/landing.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,14 +20,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     MainComponent,
     NavComponent,
     RegLoginPageComponent,
-    LandingComponent
+    LandingComponent,
+    
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [HttpClientModule, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
