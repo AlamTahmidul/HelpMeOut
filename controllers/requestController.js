@@ -1,6 +1,8 @@
 const Request = require('../models/Request');
 const User = require('../models/User');
 
+const { sendEmail } = require('../utils/sendMail');
+
 exports.addRequest = async (req, res) => {
     const { content } = req.body;
     try {
@@ -63,6 +65,9 @@ exports.claimRequest = async (req, res) => {
         const updatedRequest = await Request.findByIdAndUpdate(req.params.id, {
             $set: requestFields
         });
+
+        const author = await User.findById(request.author);
+        await sendEmail(author.email, user.username);
 
         res.status(200).json({ updatedRequest });
     } catch (err) {
