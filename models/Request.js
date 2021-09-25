@@ -20,6 +20,10 @@ const RequestSchema = mongoose.Schema({
     status: {
         type: String,
         default: 'Pending'
+    },
+    claimedBy: {
+        type: String,
+        default: ''
     }
 });
 

@@ -4,12 +4,12 @@ const User = require('../models/User');
 exports.addRequest = async (req, res) => {
     const { content } = req.body;
     try {
-        const author = User.findById(req.user);
+        const user = await User.findById(req.user.id);
 
         const newRequest = new Request({
             content,
-            author,
-            displayName: author.username
+            displayName: user.username,
+            author: user._id
         });
 
         await newRequest.save();
@@ -23,15 +23,15 @@ exports.addRequest = async (req, res) => {
 
 exports.deleteRequest = async (req, res) => {
     try {
-        const user = req.user;
-        const request = Request.findById(req.params.id);
+        const user = await User.findById(req.user.id);
+        const request = await Request.findById(req.params.id);
 
         // Check if request belongs to logged in user
-        if (user !== request.author) {
+        if (user._id.toString() !== request.author.toString()) {
             return res.status(401).json({ msg: 'Request does not belong to user' });
         }
 
-        await request.findOneAndRemove(req.params.id);
+        await Request.findOneAndRemove(req.params.id);
 
         res.status(200).json({ msg: 'Request deleted' });
     } catch (err) {
@@ -42,16 +42,22 @@ exports.deleteRequest = async (req, res) => {
 
 exports.claimRequest = async (req, res) => {
     try {
-        const user = req.user;
-        const request = Request.findById(req.params.id);
+        const user = await User.findById(req.user.id);
+        const request = await Request.findById(req.params.id);
+
+        // Check if request exists
+        if (!request) {
+            return res.status(404).json({ msg: 'Request does not exist' });
+        }
 
         // Check if request belongs to logged in user
-        if (user === request.author) {
+        if (user._id.toString() === request.author.toString()) {
             return res.status(401).json({ msg: 'Request cannot be claimed by user' });
         }
 
         const requestFields = {
-            status: 'Claimed'
+            status: 'Claimed',
+            claimedBy: user.username
         };
 
         const updatedRequest = await Request.findByIdAndUpdate(req.params.id, {
