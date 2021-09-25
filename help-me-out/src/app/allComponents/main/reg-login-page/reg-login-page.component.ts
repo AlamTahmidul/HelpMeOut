@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../../services/api-calling/login.service'
 import jwt_decode from 'jwt-decode';
 
-
-
 @Component({
   selector: 'app-reg-login-page',
   templateUrl: './reg-login-page.component.html',
@@ -14,14 +12,12 @@ import jwt_decode from 'jwt-decode';
 export class RegLoginPageComponent implements OnInit {
   name = new FormControl('');
   password = new FormControl('')
- 
+
 
   constructor(public router: Router, private loginService : LoginService) { }
 
   ngOnInit(): void {
     console.log('checking if any user is detected: ',localStorage.getItem('user'))
-   
-    
   }
 
   LogInClicked(): void{
@@ -37,7 +33,7 @@ export class RegLoginPageComponent implements OnInit {
 
       "email": this.name.value,
       "password": this.password.value
-      
+
       }).subscribe((data)=>{
         var founduser = this.getDecodedAccessToken((JSON.stringify(data)))
         console.log('response: ',founduser);
@@ -50,7 +46,7 @@ export class RegLoginPageComponent implements OnInit {
         console.log("Bad Credential");
       }
 )
-    
+
   }
 
   getDecodedAccessToken(token: string): any {

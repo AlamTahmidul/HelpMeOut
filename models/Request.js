@@ -17,6 +17,16 @@ const RequestSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    location: {
+        type: String,
+        required: false,
+        default: ''
+    },
+    incentive: {
+        type: Number,
+        required: false,
+        default: 0
+    },
     status: {
         type: String,
         default: 'Pending'

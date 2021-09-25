@@ -4,12 +4,14 @@ const User = require('../models/User');
 const { sendRequestClaimedEmail } = require('../utils/sendMail');
 
 exports.addRequest = async (req, res) => {
-    const { content } = req.body;
+    const { content, incentive, location } = req.body;
     try {
         const user = await User.findById(req.user.id);
 
         const newRequest = new Request({
             content,
+            incentive,
+            location,
             displayName: user.username,
             author: user._id
         });
