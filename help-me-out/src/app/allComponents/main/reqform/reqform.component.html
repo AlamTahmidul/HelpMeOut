@@ -1,0 +1,39 @@
+<form>
+    <div class="form-group m-3">
+        <label>What issue are you facing?</label>
+        <input
+            name="content"
+            type="text"
+            class="form-control"
+            [formControl] = "issue"
+            placeholder="{{is}}"
+            required
+        />
+    </div>
+    <div class="form-group m-3" >
+        <label>Location</label>
+        <input
+            name="location"
+            type="text"
+            class="form-control"
+            placeholder="{{lat}} , {{long}}"
+        disabled
+        />
+    </div>
+    <div class="form-group m-3">
+        <label>Are you willing to offer an incentive?</label>
+        <input
+            name="incentive"
+            type="number"
+            step="0.01"
+            class="form-control"
+            [formControl] = "incentive"
+            placeholder="{{in}}"
+            min="0"
+            required
+        />
+    </div>
+    <button type="submit" class="btn btn-dark" (click)="handleSubmit()">
+        Submit
+    </button>
+</form>
