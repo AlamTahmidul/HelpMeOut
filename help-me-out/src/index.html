@@ -23,17 +23,13 @@
 
       document.getElementById('output').src = dataURL; // Display the image
     };
-    reader.readAsDataURL(input.files[0]);
-    /**
-     * let img = document.getElementById('image');
-        img.src = localStorage.getItem('image');
-    */   
+    reader.readAsDataURL(input.files[0]); 
   }
     let restore = function(f) {
       let img = document.getElementById('output');
       img.src = localStorage.getItem('image');
     }
-</script>
+  </script>
   </head>
 <body>
   <app-root></app-root>
