@@ -13,4 +13,7 @@ router.delete('/delete/:id', isAuth, requestController.deleteRequest);
 // Claim request
 router.post('/claim/:id', isAuth, requestController.claimRequest);
 
+// Get all requests
+router.get('/', isAuth, requestController.fetchRequests);
+
 module.exports = router;

@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 
 const User = require('../models/User');
 
+const { sendWelcomeEmail } = require('../utils/sendMail');
+
 exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
 
@@ -84,6 +86,8 @@ exports.registerUser = async (req, res) => {
 			},
 			(err, token) => {
 				if (err) throw err;
+
+				sendWelcomeEmail(email, username);
 				res.status(200).json(token);
 			}
 		);

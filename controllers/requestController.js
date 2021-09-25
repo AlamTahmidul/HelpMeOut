@@ -1,7 +1,7 @@
 const Request = require('../models/Request');
 const User = require('../models/User');
 
-const { sendEmail } = require('../utils/sendMail');
+const { sendRequestClaimedEmail } = require('../utils/sendMail');
 
 exports.addRequest = async (req, res) => {
     const { content } = req.body;
@@ -72,9 +72,20 @@ exports.claimRequest = async (req, res) => {
         });
 
         const author = await User.findById(request.author);
-        await sendEmail(author.email, user.username);
+        await sendRequestClaimedEmail(author.email, user.username);
 
         res.status(200).json({ updatedRequest });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ msg: 'Server error' });
+    }
+}
+
+exports.fetchRequests = async (req, res) => {
+    try {
+        const requests = await Request.find().sort({ createdAt: -1 });
+
+        res.status(200).json(requests);
     } catch (err) {
         console.error(err.message);
         res.status(500).json({ msg: 'Server error' });
