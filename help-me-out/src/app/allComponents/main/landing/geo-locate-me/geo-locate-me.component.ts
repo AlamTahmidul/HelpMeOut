@@ -16,7 +16,13 @@ export class GeoLocateMeComponent implements OnInit {
     this.geolocateService.locateMe().subscribe((res) => {
       console.log(res);
       this.userLoc = res;
-      console.log(this.userLoc.location);
+      localStorage.setItem('lat', this.userLoc.location.lat);
+      localStorage.setItem('lng', this.userLoc.location.lng);
+      console.log(
+        'checking localStorage for user location: ',
+        localStorage.getItem('lat'),
+        localStorage.getItem('lng')
+      );
     });
   }
 }
