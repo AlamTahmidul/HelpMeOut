@@ -11,6 +11,7 @@ import { RegLoginPageComponent } from './allComponents/main/reg-login-page/reg-l
 import { LandingComponent } from './allComponents/main/landing/landing.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { ButtonComponent } from './allComponents/main/button/button.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     NavComponent,
     RegLoginPageComponent,
     LandingComponent,
+    ButtonComponent,
     
   ],
   imports: [
