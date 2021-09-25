@@ -7,10 +7,15 @@ import { HeaderComponent } from './allComponents/header/header.component';
 import { FooterComponent } from './allComponents/footer/footer.component';
 import { MainComponent } from './allComponents/main/main.component';
 import { NavComponent } from './allComponents/header/nav/nav.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    MainComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
